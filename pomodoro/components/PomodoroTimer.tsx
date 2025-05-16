@@ -49,14 +49,6 @@ export default function PomodoroTimer() {
         isRunning={isRunning}
         onStartPause={handleStartPause}
       />
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={handleStartPause}
-          style={styles.StartPauseButton}
-        >
-          <Text>{isRunning ? "Pause" : "Start"}</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
