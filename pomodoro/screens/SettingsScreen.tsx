@@ -1,15 +1,34 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useRef, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { workTimeStore } from "../store/store";
 const SettingsScreen = () => {
+  const [workTimeValue, setWorkTimeValue] = useState<number>(0);
+
+  const workTime = workTimeStore((state) => state.workTime);
+  const increeseWorkTime = workTimeStore((state) => state.increaseWorkTime);
+  const decreeseWorkTime = workTimeStore((state) => state.decreaseWorkTime);
+  const handleIncreaseTime = () => {
+    increeseWorkTime(1);
+  };
   return (
     <View style={styles.wrapper}>
       <View style={styles.timeBlocks}>
         <View style={styles.timeBlockItem}>
-          <Text style={styles.timeText}>25</Text>
+          <Text style={styles.timeText}>{workTime}</Text>
           <View style={styles.timeConrtols}>
-            <Ionicons name="add" size={24} color="#fff" />
-            <Ionicons name="remove" size={24} color="#fff" />
+            <Ionicons
+              name="add"
+              size={24}
+              color="#fff"
+              onPress={() => handleIncreaseTime(1)}
+            />
+            <Ionicons
+              name="remove"
+              size={24}
+              color="#fff"
+              onPress={() => decreeseWorkTime(1)}
+            />
           </View>
         </View>
       </View>

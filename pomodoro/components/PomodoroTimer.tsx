@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { View, StyleSheet } from "react-native";
 import CircularProgress from "./AnimatedCircularProgress";
+import { workTimeStore } from "../store/store";
 
 export default function PomodoroTimer() {
-  const POMODORO_TIME = 5 * 60; // 5 mins for dev needs
+  const workTime = workTimeStore((state) => state.workTime);
+
+  const POMODORO_TIME = workTime * 60; // 5 mins for dev needs
 
   const refInterval = useRef<NodeJS.Timeout | null>(null);
   const [leftTime, setLeftTime] = useState<number>(POMODORO_TIME);
@@ -16,6 +19,10 @@ export default function PomodoroTimer() {
       .toString()
       .padStart(2, "0")}`;
   };
+
+  useEffect(() => {
+    setLeftTime(POMODORO_TIME);
+  }, [workTime]);
 
   useEffect(() => {
     if (isRunning) {
