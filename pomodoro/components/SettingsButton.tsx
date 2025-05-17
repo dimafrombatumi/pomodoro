@@ -26,10 +26,10 @@ export default SettingsButton;
 
 const styles = StyleSheet.create({
   wrapper: {
+    alignItems: "flex-end",
     backgroundColor: "#000",
     justifyContent: "center",
-    alignItems: "flex-end",
-    paddingTop: 20,
     paddingRight: 20,
+    paddingTop: 20,
   },
 });

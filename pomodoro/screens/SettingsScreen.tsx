@@ -1,15 +1,14 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useRef, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { workTimeStore } from "../store/store";
 const SettingsScreen = () => {
-  const [workTimeValue, setWorkTimeValue] = useState<number>(0);
-
   const workTime = workTimeStore((state) => state.workTime);
   const increeseWorkTime = workTimeStore((state) => state.increaseWorkTime);
   const decreeseWorkTime = workTimeStore((state) => state.decreaseWorkTime);
-  const handleIncreaseTime = () => {
-    increeseWorkTime(1);
+
+  const handleIncreaseTime = (num) => {
+    increeseWorkTime(num);
   };
   return (
     <View style={styles.wrapper}>
@@ -39,35 +38,34 @@ const SettingsScreen = () => {
 export default SettingsScreen;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: "flex-start",
+  timeBlockItem: {
     alignItems: "center",
-    backgroundColor: "#000",
+    backgroundColor: "#cce1",
+    height: 80,
+    justifyContent: "center",
+    width: "30%",
   },
 
   timeBlocks: {
-    marginTop: 40,
-
     flexDirection: "row",
     gap: 10,
-  },
-
-  timeBlockItem: {
-    backgroundColor: "#cce1",
-    width: "30%",
-    height: 80,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  timeText: {
-    fontSize: 40,
-    color: "#fff",
+    marginTop: 40,
   },
 
   timeConrtols: {
     flexDirection: "row",
     gap: 20,
+  },
+
+  timeText: {
+    color: "#fff",
+    fontSize: 40,
+  },
+
+  wrapper: {
+    alignItems: "center",
+    backgroundColor: "#000000",
+    flex: 1,
+    justifyContent: "flex-start",
   },
 });

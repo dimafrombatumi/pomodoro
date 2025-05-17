@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import PomodoroTimer from "../components/PomodoroTimer";
 import SettingsButton from "../components/SettingsButton";
@@ -12,5 +12,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});
