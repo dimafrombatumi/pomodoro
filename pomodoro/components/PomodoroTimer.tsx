@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet } from "react-native";
 import CircularProgress from "./AnimatedCircularProgress";
 
 export default function PomodoroTimer() {
@@ -40,7 +40,7 @@ export default function PomodoroTimer() {
   };
 
   return (
-    <View style={styles.circularWrapper}>
+    <View style={styles.container}>
       <CircularProgress
         radius={140}
         strokeWidth={20}
@@ -57,13 +57,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-  },
-  circularWrapper: {
-    backgroundColor: "#111",
-  },
-  StartPauseButton: {
-    padding: 10,
-    backgroundColor: "#03ffaf",
   },
 });

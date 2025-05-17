@@ -99,7 +99,7 @@ export default function AnimatedCircularProgress({
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: "100%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#000",
@@ -111,14 +111,11 @@ const styles = StyleSheet.create({
   },
   timeText: {
     fontSize: 60,
-    fontWeight: "bold",
+    fontWeight: "100",
     color: "#fff",
   },
   btn: {
-    borderColor: "green",
-    borderWidth: 1,
     height: 50,
     width: 50,
-    borderRadius: 50,
   },
 });
