@@ -24,8 +24,8 @@ export const workTimeStore = create<TimeState>()((set) => ({
     decreaseWorkTime: (num) => set((state) => ({ workTime: state.workTime - num })),
     increaseSmallPause: (pa) => set((state) => ({ smallPause: state.smallPause + pa })),
     decreaseSmallPause: (pa) => set((state) => ({ smallPause: state.smallPause - pa })),
-    increaseRoundsAll: (ra) => set((state) => ({ smallPause: state.smallPause + ra })),
-    decreaseRoundsAll: (ra) => set((state) => ({ smallPause: state.smallPause - ra })),
-    increaseRoundsDone: (rd) => set((state) => ({ smallPause: state.smallPause + rd })),
-    decreaseRoundsDone: (rd) => set((state) => ({ smallPause: state.smallPause - rd })),
+    increaseRoundsAll: (ra) => set((state) => ({ roundsAll: state.roundsAll + ra })),
+    decreaseRoundsAll: (ra) => set((state) => ({ roundsAll: state.roundsAll - ra })),
+    increaseRoundsDone: (rd) => set((state) => ({ roundsDone: state.roundsDone + rd })),
+    decreaseRoundsDone: (rd) => set((state) => ({ roundsDone: state.roundsDone - rd })),
 }));
