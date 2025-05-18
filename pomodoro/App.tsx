@@ -1,10 +1,10 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { RootStackParamList } from "./types";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootStackParamList } from './types';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from "./screens/HomeScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -12,17 +12,13 @@ function RootStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator id={undefined} initialRouteName="HomeScreen">
-        <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen
           name="SettingsScreen"
           component={SettingsScreen}
           options={{
-            headerStyle: { backgroundColor: "#000" },
-            headerTintColor: "#fff",
+            headerStyle: { backgroundColor: '#000' },
+            headerTintColor: '#fff',
           }}
         />
       </Stack.Navigator>

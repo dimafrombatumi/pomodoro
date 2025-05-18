@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import { View, StyleSheet } from "react-native";
-import CircularProgress from "./AnimatedCircularProgress";
-import { workTimeStore } from "../store/store";
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import CircularProgress from './AnimatedCircularProgress';
+import { workTimeStore } from '../store/store';
 
 export default function PomodoroTimer() {
   const workTime = workTimeStore((state) => state.workTime);
@@ -15,9 +15,7 @@ export default function PomodoroTimer() {
   const formatTime = (seconds: number) => {
     const min = Math.floor(seconds / 60);
     const sec = seconds % 60;
-    return `${min.toString().padStart(2, "0")}:${sec
-      .toString()
-      .padStart(2, "0")}`;
+    return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
   };
 
   useEffect(() => {
@@ -63,6 +61,6 @@ export default function PomodoroTimer() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
 });

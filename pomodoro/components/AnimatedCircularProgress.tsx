@@ -1,14 +1,16 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import Svg, { Circle } from "react-native-svg";
+import React from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
 import Animated, {
   useSharedValue,
   useAnimatedProps,
   withTiming,
   Easing,
-} from "react-native-reanimated";
-import { interpolate } from "react-native-reanimated";
-import Ionicons from "@expo/vector-icons/Ionicons";
+} from 'react-native-reanimated';
+import { workTimeStore } from '../store/store';
+
+import { interpolate } from 'react-native-reanimated';
+import Ionicons from '@expo/vector-icons/Ionicons';
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 type Props = {
@@ -32,6 +34,7 @@ export default function AnimatedCircularProgress({
   const circumference = 2 * Math.PI * radius;
 
   const animatedProgress = useSharedValue(progress);
+  const smallPause = workTimeStore((state) => state.smallPause);
 
   // каждый раз, когда progress обновляется — анимируем
   React.useEffect(() => {
@@ -42,11 +45,7 @@ export default function AnimatedCircularProgress({
   }, [progress]);
 
   const animatedProps = useAnimatedProps(() => {
-    const strokeDashoffset = interpolate(
-      animatedProgress.value,
-      [0, 1],
-      [circumference, 0]
-    );
+    const strokeDashoffset = interpolate(animatedProgress.value, [0, 1], [circumference, 0]);
     return {
       strokeDashoffset,
     };
@@ -85,33 +84,37 @@ export default function AnimatedCircularProgress({
         <View style={styles.textWrapper}>
           <Text style={styles.timeText}>{time}</Text>
           <TouchableOpacity onPress={handleOnStartPause}>
-            <Ionicons
-              name={!isRunning ? "play" : "pause"}
-              size={40}
-              color="red"
-            />
+            <Ionicons name={!isRunning ? 'play' : 'pause'} size={40} color="red" />
           </TouchableOpacity>
         </View>
+      </View>
+      <View style={styles.smallPauseBlock}>
+        <Text style={styles.smallPauseText}>{smallPause}</Text>
       </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  smallPauseBlock: { height: '15%', backgroundColor: '#000', padding: 20 },
+  smallPauseText: {
+    color: '#fff',
+    fontSize: 24,
+  },
   textWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
   },
   timeText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 60,
-    fontWeight: "100",
+    fontWeight: '100',
   },
   wrapper: {
-    alignItems: "center",
-    backgroundColor: "#000",
+    alignItems: 'center',
+    backgroundColor: '#000',
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
 });
