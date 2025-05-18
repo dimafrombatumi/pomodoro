@@ -5,6 +5,8 @@ import { workTimeStore } from '../store/store';
 
 export default function PomodoroTimer() {
   const workTime = workTimeStore((state) => state.workTime);
+  const roundsAll = workTimeStore((state) => state.roundsAll);
+  const roundsDone = workTimeStore((state) => state.roundsDone);
 
   const POMODORO_TIME = workTime * 60; // 5 mins for dev needs
 
@@ -54,6 +56,11 @@ export default function PomodoroTimer() {
         isRunning={isRunning}
         onStartPause={handleStartPause}
       />
+      <View style={styles.bottom}>
+        <Text style={styles.bottomText}>
+          {roundsDone} / {roundsAll}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -63,4 +70,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  bottom: {
+    height: '10%',
+    backgroundColor: '#000',
+    justifyContent: 'center',
+  },
+  bottomText: { color: '#fff', fontSize: 24, fontWeight: 500, padding: 5 },
 });

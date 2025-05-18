@@ -88,9 +88,6 @@ export default function AnimatedCircularProgress({
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.smallPauseBlock}>
-        <Text style={styles.smallPauseText}>{smallPause}</Text>
-      </View>
     </>
   );
 }

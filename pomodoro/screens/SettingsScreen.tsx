@@ -18,6 +18,7 @@ const SettingsScreen = () => {
     <View style={styles.wrapper}>
       <View style={styles.timeBlocks}>
         <View style={styles.timeBlockItem}>
+          <Text style={styles.smText}>Work Time</Text>
           <Text style={styles.timeText}>{workTime}</Text>
           <View style={styles.timeConrtols}>
             <Ionicons name="add" size={24} color="#fff" onPress={() => handleIncreaseTime(1)} />
@@ -25,6 +26,16 @@ const SettingsScreen = () => {
           </View>
         </View>
         <View style={styles.timeBlockItem}>
+          <Text style={styles.smText}>Small Pause</Text>
+
+          <Text style={styles.timeText}>{smallPause}</Text>
+          <View style={styles.timeConrtols}>
+            <Ionicons name="add" size={24} color="#fff" onPress={() => increaseSmallPause(1)} />
+            <Ionicons name="remove" size={24} color="#fff" onPress={() => decreaseSmallPause(1)} />
+          </View>
+        </View>
+        <View style={styles.timeBlockItem}>
+          <Text style={styles.smText}>Long Pause</Text>
           <Text style={styles.timeText}>{smallPause}</Text>
           <View style={styles.timeConrtols}>
             <Ionicons name="add" size={24} color="#fff" onPress={() => increaseSmallPause(1)} />
@@ -42,9 +53,15 @@ const styles = StyleSheet.create({
   timeBlockItem: {
     alignItems: 'center',
     backgroundColor: '#cce1',
-    height: 80,
+    height: 'auto',
+    padding: 10,
     justifyContent: 'center',
-    width: '30%',
+    width: '29%',
+  },
+
+  smText: {
+    fontSize: 16,
+    color: '#fff',
   },
 
   timeBlocks: {
