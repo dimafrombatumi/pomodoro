@@ -7,12 +7,12 @@ interface TimeState {
     roundsDone: number;
     increaseWorkTime: (num: number) => void;
     decreaseWorkTime: (num: number) => void;
-    increaseSmallPause: (pa: number) => void;
-    decreaseSmallPause: (pa: number) => void;
-    increaseRoundsAll: (pa: number) => void;
-    decreaseRoundsAll: (pa: number) => void;
-    increaseRoundsDone: (pa: number) => void;
-    decreaseRoundsDone: (pa: number) => void;
+    increaseSmallPause: (sp: number) => void;
+    decreaseSmallPause: (sp: number) => void;
+    increaseRoundsAll: (ra: number) => void;
+    decreaseRoundsAll: (ra: number) => void;
+    increaseRoundsDone: (rd: number) => void;
+    decreaseRoundsDone: (rd: number) => void;
 }
 
 export const workTimeStore = create<TimeState>()((set) => ({
@@ -22,8 +22,8 @@ export const workTimeStore = create<TimeState>()((set) => ({
     roundsDone: 0,
     increaseWorkTime: (num) => set((state) => ({ workTime: state.workTime + num })),
     decreaseWorkTime: (num) => set((state) => ({ workTime: state.workTime - num })),
-    increaseSmallPause: (pa) => set((state) => ({ smallPause: state.smallPause + pa })),
-    decreaseSmallPause: (pa) => set((state) => ({ smallPause: state.smallPause - pa })),
+    increaseSmallPause: (sp) => set((state) => ({ smallPause: state.smallPause + sp })),
+    decreaseSmallPause: (sp) => set((state) => ({ smallPause: state.smallPause - sp })),
     increaseRoundsAll: (ra) => set((state) => ({ roundsAll: state.roundsAll + ra })),
     decreaseRoundsAll: (ra) => set((state) => ({ roundsAll: state.roundsAll - ra })),
     increaseRoundsDone: (rd) => set((state) => ({ roundsDone: state.roundsDone + rd })),

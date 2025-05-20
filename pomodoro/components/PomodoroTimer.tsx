@@ -7,6 +7,7 @@ export default function PomodoroTimer() {
   const workTime = workTimeStore((state) => state.workTime);
   const roundsAll = workTimeStore((state) => state.roundsAll);
   const roundsDone = workTimeStore((state) => state.roundsDone);
+  const increaseRoundsDone = workTimeStore((state) => state.increaseRoundsDone);
 
   const POMODORO_TIME = workTime * 60; // 5 mins for dev needs
 
@@ -31,6 +32,7 @@ export default function PomodoroTimer() {
           if (prev <= 1) {
             clearInterval(refInterval.current!);
             setIsRunning(false);
+            increaseRoundsDone(1);
             setLeftTime(POMODORO_TIME);
             return 0;
           }
@@ -48,6 +50,28 @@ export default function PomodoroTimer() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.bottom}>
+        <View style={styles.bottomItem}>
+          <Text style={styles.bottomText}>Rounds</Text>
+          <Text style={styles.bottomTextScore}>
+            {roundsDone} / {roundsAll}
+          </Text>
+        </View>
+        <View style={styles.bottomItem}>
+          <Text style={styles.bottomText}>Goals</Text>
+          <Text style={styles.bottomTextScore}>
+            {roundsDone} / {roundsAll}
+          </Text>
+        </View>
+        <View style={styles.bottomItem}>
+          <Text style={styles.bottomText}>Today</Text>
+          <Text style={styles.bottomTextScore}>{roundsDone}</Text>
+        </View>
+        <View style={styles.bottomItem}>
+          <Text style={styles.bottomText}>Lifetime</Text>
+          <Text style={styles.bottomTextScore}>{roundsDone}</Text>
+        </View>
+      </View>
       <CircularProgress
         radius={140}
         strokeWidth={20}
@@ -56,24 +80,38 @@ export default function PomodoroTimer() {
         isRunning={isRunning}
         onStartPause={handleStartPause}
       />
-      <View style={styles.bottom}>
-        <Text style={styles.bottomText}>
-          {roundsDone} / {roundsAll}
-        </Text>
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '90%',
     justifyContent: 'center',
   },
   bottom: {
-    height: '10%',
+    marginBottom: 100,
+    height: 'auto',
     backgroundColor: '#000',
     justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 30,
   },
-  bottomText: { color: '#fff', fontSize: 24, fontWeight: 500, padding: 5 },
+  bottomItem: {
+    flexDirection: 'column',
+    backgroundColor: '#cce1',
+    height: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 500,
+  },
+  bottomTextScore: {
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: 500,
+  },
 });
