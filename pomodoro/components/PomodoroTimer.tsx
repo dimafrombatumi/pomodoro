@@ -7,9 +7,11 @@ export default function PomodoroTimer() {
   const workTime = workTimeStore((state) => state.workTime);
   const roundsAll = workTimeStore((state) => state.roundsAll);
   const roundsDone = workTimeStore((state) => state.roundsDone);
+  const goalsTodo = workTimeStore((state) => state.goalsTodo);
+  const goalsDone = workTimeStore((state) => state.goalsDone);
   const increaseRoundsDone = workTimeStore((state) => state.increaseRoundsDone);
 
-  const POMODORO_TIME = workTime * 60; // 5 mins for dev needs
+  const POMODORO_TIME = workTime * 5; // 5 mins for dev needs
 
   const refInterval = useRef<NodeJS.Timeout | null>(null);
   const [leftTime, setLeftTime] = useState<number>(POMODORO_TIME);
@@ -60,16 +62,16 @@ export default function PomodoroTimer() {
         <View style={styles.bottomItem}>
           <Text style={styles.bottomText}>Goals</Text>
           <Text style={styles.bottomTextScore}>
-            {roundsDone} / {roundsAll}
+            {goalsDone} / {goalsTodo}
           </Text>
         </View>
         <View style={styles.bottomItem}>
           <Text style={styles.bottomText}>Today</Text>
-          <Text style={styles.bottomTextScore}>{roundsDone}</Text>
+          <Text style={styles.bottomTextScore}></Text>
         </View>
         <View style={styles.bottomItem}>
           <Text style={styles.bottomText}>Lifetime</Text>
-          <Text style={styles.bottomTextScore}>{roundsDone}</Text>
+          <Text style={styles.bottomTextScore}></Text>
         </View>
       </View>
       <CircularProgress
