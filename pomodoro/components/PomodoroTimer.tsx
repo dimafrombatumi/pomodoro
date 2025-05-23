@@ -7,12 +7,9 @@ export default function PomodoroTimer() {
   const workTime = workTimeStore((state) => state.workTime);
   const roundsAll = workTimeStore((state) => state.roundsAll);
   const roundsDone = workTimeStore((state) => state.roundsDone);
-  const goalsTodo = workTimeStore((state) => state.goalsTodo);
   const goalsDone = workTimeStore((state) => state.goalsDone);
   const increaseRoundsDone = workTimeStore((state) => state.increaseRoundsDone);
-
   const POMODORO_TIME = workTime * 5; // 5 mins for dev needs
-
   const refInterval = useRef<NodeJS.Timeout | null>(null);
   const [leftTime, setLeftTime] = useState<number>(POMODORO_TIME);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -24,8 +21,12 @@ export default function PomodoroTimer() {
   };
 
   useEffect(() => {
-    setLeftTime(POMODORO_TIME);
-  }, [workTime]);
+    if (leftTime === 0 && isRunning) {
+      setIsRunning(false);
+      increaseRoundsDone(1);
+      setLeftTime(POMODORO_TIME);
+    }
+  }, [leftTime]);
 
   useEffect(() => {
     if (isRunning) {
@@ -33,9 +34,7 @@ export default function PomodoroTimer() {
         setLeftTime((prev) => {
           if (prev <= 1) {
             clearInterval(refInterval.current!);
-            setIsRunning(false);
-            increaseRoundsDone(1);
-            setLeftTime(POMODORO_TIME);
+
             return 0;
           }
           return prev - 1;
@@ -61,9 +60,7 @@ export default function PomodoroTimer() {
         </View>
         <View style={styles.bottomItem}>
           <Text style={styles.bottomText}>Goals</Text>
-          <Text style={styles.bottomTextScore}>
-            {goalsDone} / {goalsTodo}
-          </Text>
+          <Text style={styles.bottomTextScore}>{goalsDone}</Text>
         </View>
         <View style={styles.bottomItem}>
           <Text style={styles.bottomText}>Today</Text>
@@ -87,24 +84,20 @@ export default function PomodoroTimer() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: '90%',
-    justifyContent: 'center',
-  },
   bottom: {
-    marginBottom: 100,
-    height: 'auto',
     backgroundColor: '#000',
-    justifyContent: 'center',
     flexDirection: 'row',
     gap: 30,
-  },
-  bottomItem: {
-    flexDirection: 'column',
-    backgroundColor: '#cce1',
     height: 'auto',
     justifyContent: 'center',
+    marginBottom: 100,
+  },
+  bottomItem: {
     alignItems: 'center',
+    backgroundColor: '#cce1',
+    flexDirection: 'column',
+    height: 'auto',
+    justifyContent: 'center',
   },
   bottomText: {
     color: '#fff',
@@ -115,5 +108,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 32,
     fontWeight: 500,
+  },
+  container: {
+    height: '90%',
+    justifyContent: 'center',
   },
 });

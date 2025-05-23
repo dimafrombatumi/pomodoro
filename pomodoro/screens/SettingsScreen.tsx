@@ -50,18 +50,18 @@ const SettingsScreen = () => {
 export default SettingsScreen;
 
 const styles = StyleSheet.create({
+  smText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+
   timeBlockItem: {
     alignItems: 'center',
     backgroundColor: '#cce1',
     height: 'auto',
-    padding: 10,
     justifyContent: 'center',
+    padding: 10,
     width: '29%',
-  },
-
-  smText: {
-    fontSize: 16,
-    color: '#fff',
   },
 
   timeBlocks: {

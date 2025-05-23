@@ -7,7 +7,6 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
-import { workTimeStore } from '../store/store';
 
 import { interpolate } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -34,7 +33,6 @@ export default function AnimatedCircularProgress({
   const circumference = 2 * Math.PI * radius;
 
   const animatedProgress = useSharedValue(progress);
-  const smallPause = workTimeStore((state) => state.smallPause);
 
   // каждый раз, когда progress обновляется — анимируем
   React.useEffect(() => {
@@ -93,11 +91,6 @@ export default function AnimatedCircularProgress({
 }
 
 const styles = StyleSheet.create({
-  smallPauseBlock: { height: '15%', backgroundColor: '#000', padding: 20 },
-  smallPauseText: {
-    color: '#fff',
-    fontSize: 24,
-  },
   textWrapper: {
     alignItems: 'center',
     justifyContent: 'center',
