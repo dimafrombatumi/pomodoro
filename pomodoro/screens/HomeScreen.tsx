@@ -4,7 +4,7 @@ import PomodoroTimer from '../components/PomodoroTimer';
 import SettingsButton from '../components/SettingsButton';
 const HomeScreen = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: '#000' }}>
+    <View style={{ flex: 1, backgroundColor: '#001' }}>
       <SettingsButton />
       <PomodoroTimer />
     </View>
